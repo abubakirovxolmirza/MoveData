@@ -19,7 +19,7 @@ def exchange(apps, schema_editor):
 
     Tutorial.objects.bulk_create(tutorials)
     Video.objects.bulk_create(videos)
-    Page.objects.bulk_update(page_updates, ['type'])
+    Page.objects.bulk_update(page_updates)
 
 
 class Migration(migrations.Migration):
