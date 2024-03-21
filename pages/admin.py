@@ -1,8 +1,21 @@
 from django.contrib import admin
+from .models import Page, Tutorial, Video
 
-from .models import Page, Video, Tutorial
 
-# Register your models here.
-admin.site.register(Page)
-admin.site.register(Video)
-admin.site.register(Tutorial)
+class TutorialInline(admin.StackedInline):
+    model = Tutorial
+
+
+class VideoInline(admin.StackedInline):
+    model = Video
+
+
+class PageAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+    inlines = [
+        TutorialInline,
+        VideoInline,
+    ]
+
+
+admin.site.register(Page, PageAdmin)
